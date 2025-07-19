@@ -1,0 +1,27 @@
+/* 
+    Document   : admin
+    Created on : Sep 29, 2014, 5:56:01 PM
+    Author     : williampoynter
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#dashboard_right_now .event-count a:before {
+	content: "\f145";
+}
+
+#dashboard_right_now .advert-count a:before {
+	content: "\f155";
+}
+
+#dashboard_right_now .booth-count a:before {
+	content: "\f177";
+}
+
+#dashboard_right_now .presentation-count a:before {
+	content: "\f236";
+}
+
+#dashboard_right_now .person-count a:before {
+	content: "\f336";
+}
