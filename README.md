@@ -13,13 +13,28 @@ Please read `AGENTS.md` for important contribution rules and coding guidelines.
 
 ## Quick Start with Docker
 
-A `docker-compose.yml` file is provided to launch WordPress with the third generation code mounted as a theme and plugin. After installing Docker, start the containers with:
+A `docker-compose.yml` file is provided to launch WordPress with the third generation code mounted as a theme and plugin. After installing Docker, run:
 
 ```bash
-docker compose up
+docker compose up -d
 ```
 
-Navigate to [http://localhost:8000](http://localhost:8000) to access the site. Any changes made inside `generations/third/newmr-theme` or `generations/third/newmr-plugin` will be reflected immediately.
+Once the containers are running open [http://localhost:8000](http://localhost:8000) in your browser. Any changes made inside `generations/third/newmr-theme` or `generations/third/newmr-plugin` will be reflected immediately.
+
+### Local setup steps
+
+```bash
+# Start Docker and install dependencies
+docker compose up -d
+composer install
+npm install --prefix generations/third/newmr-theme
+
+# Run the test suite
+composer test
+
+# Build the theme assets
+npm run --prefix generations/third/newmr-theme build
+```
 
 ## Building the Theme
 Run `npm install` inside `generations/third/newmr-theme` and then `npm run build` to compile the Tailwind styles with Vite. Use `npm run watch` during development. The compiled CSS in `dist/style.css` is excluded from version control.
@@ -38,4 +53,14 @@ npm run lint   # Check code style
 ```
 
 JavaScript unit tests have not been set up yet.
+
+## Porting Checklist
+
+Work to migrate functionality from the second-generation code is ongoing.
+The following features still need to be ported:
+
+- Adverts widgets used in the legacy theme.
+- Theme settings page including Google Analytics support.
+- Sorting rules for custom post type archives.
+- Jetpack/mobile theme integration and share button logic.
 
