@@ -33,7 +33,7 @@ The repository includes a licensed copy of [Tailwind UI](https://tailwindui.com)
 Run the following commands before committing:
 
 ```bash
-composer test  # Run PHPCS and PHPUnit tests
+composer test  # Sets up tests/wordpress and runs PHPUnit
 npm run lint   # Check code style
 ```
 

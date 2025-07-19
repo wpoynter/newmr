@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "phpcs -q",
     "phpunit": "phpunit",
-    "test": "phpunit"
+    "test": "bash tests/bin/install-wp-tests.sh && WP_PHPUNIT__DIR=$(pwd)/tests/wordpress/wp-phpunit phpunit"
   },
   "config": {
     "allow-plugins": {
