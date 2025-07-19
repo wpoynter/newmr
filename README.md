@@ -35,6 +35,7 @@ Run the following commands before committing:
 ```bash
 composer test  # Run PHPCS and PHPUnit tests
 npm run lint   # Check code style
-npm test       # Run unit tests
 ```
+
+JavaScript unit tests have not been set up yet.
 

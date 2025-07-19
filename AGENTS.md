@@ -22,7 +22,6 @@ Run `npm install` in `generations/third/newmr-theme` once. Use `npm run build` t
  - Run linters and tests prior to committing:
   - `composer lint`
   - `composer test`
-  - `npm test`
   - `npm run lint`
 - Ensure all checks pass before opening a pull request.
 
