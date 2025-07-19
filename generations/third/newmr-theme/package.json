@@ -5,7 +5,9 @@
   "scripts": {
     "build": "vite build",
     "watch": "vite",
-    "lint": "eslint . --ext js,jsx || true && prettier --check ."
+    "lint": "eslint . --ext js,jsx || true && prettier --check .",
+    "test": "echo \"No JS tests\"",
+    "e2e": "node --test ../../../e2e"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
