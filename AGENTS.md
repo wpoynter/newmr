@@ -11,9 +11,9 @@ This repository hosts multiple generations of the NewMR codebase.
 - **JavaScript/CSS**: format using Prettier. Run `npm run lint` (or `npx prettier --check .`) before committing.
 
 ### Running tests
-Run `composer install` once to fetch dependencies. `composer test` will create
-`tests/wordpress` via `tests/bin/install-wp-tests.sh` if it does not exist and
-then execute the PHPUnit suite using that environment.
+Run `composer install` once to fetch dependencies. `composer test` automatically
+sets up a fresh WordPress instance in `tests/wordpress` before running the
+PHPUnit suite.
 
 ### Building the theme
 Run `npm install` in `generations/third/newmr-theme` once. Use `npm run build` to compile assets and `npm run watch` for development.
@@ -42,6 +42,13 @@ Start the containers and then execute the tests from the theme directory:
 
 ```bash
 docker compose up -d
+docker compose run --rm wpcli wp core install \
+  --url=http://localhost:8000 \
+  --title=NewMR \
+  --admin_user=admin \
+  --admin_password=password \
+  --admin_email=admin@example.com \
+  --skip-email
 cd generations/third/newmr-theme
 npm run e2e
 ```
