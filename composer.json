@@ -13,10 +13,7 @@
   "scripts": {
     "lint": "phpcs -q",
     "phpunit": "phpunit",
-    "test": [
-      "@lint",
-      "@phpunit"
-    ]
+    "test": "phpunit"
   },
   "config": {
     "allow-plugins": {
