@@ -17,3 +17,12 @@ This repository hosts multiple generations of the NewMR codebase.
   - `npm test`
   - `npm run lint`
 - Ensure all checks pass before opening a pull request.
+
+## Local Development with Docker
+
+Run the provided Docker Compose configuration to start WordPress with the third-generation theme and plugin mounted:
+
+```bash
+docker compose up
+```
+

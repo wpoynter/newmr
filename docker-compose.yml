@@ -1,27 +1,29 @@
 version: '3.8'
 services:
   db:
-    image: mysql:5.7
-    volumes:
-      - db_data:/var/lib/mysql
-    restart: always
+    image: mariadb:10.6
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+
   wordpress:
     depends_on:
       - db
-    image: wordpress:latest
+    image: wordpress:php8.1-apache
     ports:
       - "8000:80"
-    volumes:
-      - ./generations/third:/var/www/html/wp-content/themes/newmr-third
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./generations/third/newmr-theme:/var/www/html/wp-content/themes/newmr-theme
+      - ./generations/third/newmr-plugin:/var/www/html/wp-content/plugins/newmr-plugin
+
 volumes:
   db_data:
