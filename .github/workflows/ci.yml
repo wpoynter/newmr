@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -proot"
+          --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install PHP dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Install Node dependencies
+        working-directory: generations/third/newmr-theme
+        run: npm ci
+
+      - name: Lint PHP
+        run: composer lint
+
+      - name: Run PHPUnit
+        env:
+          WP_DB_HOST: 127.0.0.1
+          WP_DB_USER: root
+          WP_DB_PASS: root
+          WP_DB_NAME: wordpress
+          WP_PHPUNIT__DIR: vendor/wp-phpunit/wp-phpunit
+        run: |
+          ln -s ../wordpress tests/wordpress
+          composer test
+
+      - name: Lint JS/CSS
+        working-directory: generations/third/newmr-theme
+        run: npm run lint
+
+      - name: Start WordPress
+        run: docker compose up -d
+
+      - name: Wait for WordPress
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:8000 > /dev/null; then
+              echo "WordPress is up"
+              break
+            fi
+            sleep 5
+          done
+
+      - name: Run E2E Tests
+        working-directory: generations/third/newmr-theme
+        run: npm run e2e
+
+      - name: Shutdown containers
+        if: always()
+        run: docker compose down
