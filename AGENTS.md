@@ -55,3 +55,7 @@ npm run e2e
 
 Set `BASE_URL` if the site is accessible at a different address.
 
+The end-to-end tests read the `BASE_URL` environment variable to know where
+WordPress is running. If omitted, it defaults to `http://localhost:8000`.
+The test suite waits for this URL to respond before executing any checks.
+
