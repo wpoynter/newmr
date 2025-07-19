@@ -1,6 +1,27 @@
 {
   "version": 2,
   "settings": {
-    "appearanceTools": true
+    "appearanceTools": true,
+    "color": {
+      "palette": [{ "slug": "brand", "color": "#1e40af", "name": "Brand Blue" }]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "ui-sans-serif, system-ui",
+          "name": "Sans",
+          "slug": "sans"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#1e293b"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--sans)"
+    }
   }
 }
