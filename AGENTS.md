@@ -7,13 +7,13 @@ This repository hosts multiple generations of the NewMR codebase.
 - `generations/third/` is the home for all new development. Add new plugins, themes, and scripts here.
 
 ## Coding style
-- **PHP**: follow the [WordPress coding standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/). Use `composer lint` to check your code.
+- **PHP**: follow the [WordPress coding standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/). Run `composer lint` or `composer test` to check your code with PHPCS.
 - **JavaScript/CSS**: format using Prettier. Run `npm run lint` (or `npx prettier --check .`) before committing.
 
 ## Commit and PR guidelines
 - Keep commits focused: one logical change per commit.
 - Run linters and tests prior to committing:
-  - `composer test`
+  - `composer test` (runs PHPCS)
   - `npm test`
   - `npm run lint`
 - Ensure all checks pass before opening a pull request.
