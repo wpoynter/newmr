@@ -24,6 +24,9 @@ Navigate to [http://localhost:8000](http://localhost:8000) to access the site. A
 ## Building the Theme
 Run `npm install` inside `generations/third/newmr-theme` and then `npm run build` to bundle assets. Use `npm run watch` during development.
 
+## Tailwind UI Resources
+The repository includes a licensed copy of [Tailwind UI](https://tailwindui.com) under the `tailwindui/` directory. These components and templates are used for the third-generation UI. See `generations/third/TailwindUI.md` for usage instructions.
+
 
 ## Tests and Linting
 
