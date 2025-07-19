@@ -21,6 +21,10 @@ docker compose up
 
 Navigate to [http://localhost:8000](http://localhost:8000) to access the site. Any changes made inside `generations/third/newmr-theme` or `generations/third/newmr-plugin` will be reflected immediately.
 
+## Building the Theme
+Run `npm install` inside `generations/third/newmr-theme` and then `npm run build` to bundle assets. Use `npm run watch` during development.
+
+
 ## Tests and Linting
 
 Once scripts are available, use the following commands:
