@@ -42,6 +42,13 @@ Start the containers and then execute the tests from the theme directory:
 
 ```bash
 docker compose up -d
+docker compose run --rm wpcli wp core install \
+  --url=http://localhost:8000 \
+  --title=NewMR \
+  --admin_user=admin \
+  --admin_password=password \
+  --admin_email=admin@example.com \
+  --skip-email
 cd generations/third/newmr-theme
 npm run e2e
 ```

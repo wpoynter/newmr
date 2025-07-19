@@ -70,6 +70,16 @@ jobs:
             sleep 5
           done
 
+      - name: Install WordPress
+        run: |
+          docker compose run --rm wpcli wp core install \
+            --url=http://localhost:8000 \
+            --title=NewMR \
+            --admin_user=admin \
+            --admin_password=password \
+            --admin_email=admin@example.com \
+            --skip-email
+
       - name: Run E2E Tests
         working-directory: generations/third/newmr-theme
         run: npm run e2e
