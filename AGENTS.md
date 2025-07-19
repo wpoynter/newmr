@@ -10,6 +10,9 @@ This repository hosts multiple generations of the NewMR codebase.
 - **PHP**: follow the [WordPress coding standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/). Run `composer lint` or `composer test` to check your code with PHPCS.
 - **JavaScript/CSS**: format using Prettier. Run `npm run lint` (or `npx prettier --check .`) before committing.
 
+### Running tests
+Execute `composer test` to run PHPCS and the PHPUnit suite powered by the WordPress test library.
+
 ### Building the theme
 Run `npm install` in `generations/third/newmr-theme` once. Use `npm run build` to compile assets and `npm run watch` for development.
 
