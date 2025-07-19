@@ -15,5 +15,5 @@ This repository hosts multiple generations of the NewMR codebase.
 - Run linters and tests prior to committing:
   - `composer test`
   - `npm test`
+  - `npm run lint`
 - Ensure all checks pass before opening a pull request.
-
