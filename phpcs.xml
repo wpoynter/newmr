@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <ruleset name="NewMR">
-    <rule ref="WordPress" />
+<rule ref="WordPress" />
+    <arg name="extensions" value="php"/>
     <file>generations/third</file>
     <exclude-pattern>vendor/*</exclude-pattern>
 </ruleset>
