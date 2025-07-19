@@ -13,13 +13,13 @@ Please read `AGENTS.md` for important contribution rules and coding guidelines.
 
 ## Quick Start with Docker
 
-A Docker configuration is provided to spin up a local WordPress environment. Ensure you have Docker installed, then run:
+A `docker-compose.yml` file is provided to launch WordPress with the third generation code mounted as a theme and plugin. After installing Docker, start the containers with:
 
 ```bash
-docker compose up -d
+docker compose up
 ```
 
-WordPress will be available at [http://localhost:8000](http://localhost:8000). Theme files from `generations/third/` will be mounted automatically.
+Navigate to [http://localhost:8000](http://localhost:8000) to access the site. Any changes made inside `generations/third/newmr-theme` or `generations/third/newmr-plugin` will be reflected immediately.
 
 ## Tests and Linting
 
