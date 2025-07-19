@@ -1,0 +1,24 @@
+# WordPress uploads
+wp-content/uploads/
+
+# Node dependencies
+node_modules/
+
+# Composer dependencies
+vendor/
+
+# Editor swap files
+*.swp
+*.swo
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
