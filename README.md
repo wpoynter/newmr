@@ -27,9 +27,10 @@ Run `npm install` inside `generations/third/newmr-theme` and then `npm run build
 
 ## Tests and Linting
 
-Once scripts are available, use the following commands:
+Run the following commands before committing:
 
 ```bash
+composer test  # Run PHPCS and PHPUnit tests
 npm run lint   # Check code style
 npm test       # Run unit tests
 ```

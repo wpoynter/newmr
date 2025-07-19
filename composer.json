@@ -4,15 +4,24 @@
   "type": "project",
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.9",
-    "wp-coding-standards/wpcs": "^3.0"
+    "wp-coding-standards/wpcs": "^3.0",
+    "phpunit/phpunit": "^9.0",
+    "wp-phpunit/wp-phpunit": "^6.0",
+    "yoast/phpunit-polyfills": "^1.0",
+    "johnpbloch/wordpress": "^6.0"
   },
   "scripts": {
     "lint": "phpcs -q",
-    "test": "@lint"
+    "phpunit": "phpunit",
+    "test": [
+      "@lint",
+      "@phpunit"
+    ]
   },
   "config": {
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "johnpbloch/wordpress-core-installer": true
     }
   }
 }

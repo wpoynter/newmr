@@ -6,6 +6,7 @@ node_modules/
 
 # Composer dependencies
 vendor/
+wordpress/
 
 # Editor swap files
 *.swp
