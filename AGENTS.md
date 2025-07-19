@@ -1,5 +1,19 @@
-# Contribution Rules
+# Contribution Guidelines
 
-- Before committing, run any available unit tests with `npm test` and lint checks with `npm run lint` if these commands are defined.
-- Keep documentation up to date when adding features.
-- Use descriptive commit messages and submit pull requests for review.
+This repository hosts multiple generations of the NewMR codebase.
+
+## Repository layout
+- `generations/second/` contains the previous generation of code. Treat it as **read-only** reference.
+- `generations/third/` is the home for all new development. Add new plugins, themes, and scripts here.
+
+## Coding style
+- **PHP**: follow the [WordPress coding standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/). Use `composer lint` to check your code.
+- **JavaScript/CSS**: format using Prettier. Run `npm run lint` (or `npx prettier --check .`) before committing.
+
+## Commit and PR guidelines
+- Keep commits focused: one logical change per commit.
+- Run linters and tests prior to committing:
+  - `composer test`
+  - `npm test`
+  - `npm run lint`
+- Ensure all checks pass before opening a pull request.
