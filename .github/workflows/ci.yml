@@ -49,9 +49,7 @@ jobs:
           WP_DB_PASS: root
           WP_DB_NAME: wordpress
           WP_PHPUNIT__DIR: vendor/wp-phpunit/wp-phpunit
-        run: |
-          ln -s ../wordpress tests/wordpress
-          composer test
+        run: composer test
 
       - name: Lint JS/CSS
         working-directory: generations/third/newmr-theme
@@ -78,7 +76,8 @@ jobs:
             --admin_user=admin \
             --admin_password=password \
             --admin_email=admin@example.com \
-            --skip-email
+            --skip-email \
+            --path=/var/www/html
 
       - name: Run E2E Tests
         working-directory: generations/third/newmr-theme

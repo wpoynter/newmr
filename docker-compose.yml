@@ -22,6 +22,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     volumes:
+      - wp_data:/var/www/html
       - ./generations/third/newmr-theme:/var/www/html/wp-content/themes/newmr-theme
       - ./generations/third/newmr-plugin:/var/www/html/wp-content/plugins/newmr-plugin
 
@@ -35,8 +36,10 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     volumes:
+      - wp_data:/var/www/html
       - ./generations/third/newmr-theme:/var/www/html/wp-content/themes/newmr-theme
       - ./generations/third/newmr-plugin:/var/www/html/wp-content/plugins/newmr-plugin
 
 volumes:
   db_data:
+  wp_data:
