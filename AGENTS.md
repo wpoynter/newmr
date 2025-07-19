@@ -30,3 +30,16 @@ Run the provided Docker Compose configuration to start WordPress with the third-
 docker compose up
 ```
 
+## End-to-End Tests
+
+Basic tests live under `e2e/` and expect the Docker environment to be running.
+Start the containers and then execute the tests from the theme directory:
+
+```bash
+docker compose up -d
+cd generations/third/newmr-theme
+npm run e2e
+```
+
+Set `BASE_URL` if the site is accessible at a different address.
+
