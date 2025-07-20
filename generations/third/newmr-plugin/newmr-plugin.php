@@ -261,4 +261,3 @@ add_action(
 				register_widget( 'NewMR_Adverts_Widget' );
 	}
 );
-
