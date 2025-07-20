@@ -248,6 +248,7 @@ add_filter( 'post_type_link', 'newmr_event_permalink', 10, 3 );
  */
 require_once __DIR__ . '/includes/class-newmr-dashboard-glancer.php';
 require_once __DIR__ . '/includes/class-newmr-video-importer.php';
+require_once __DIR__ . '/includes/class-newmr-adverts-widget.php';
 
 // Register dashboard glancer items for custom post types.
 $glancer = new NewMR_Dashboard_Glancer();
@@ -255,3 +256,11 @@ $glancer->add( array( 'advert', 'booth', 'event', 'presentation', 'person' ) );
 
 // Initialize video importer.
 new NewMR_Video_Importer();
+
+// Register adverts widget.
+add_action(
+	'widgets_init',
+	static function () {
+				register_widget( 'NewMR_Adverts_Widget' );
+	}
+);
