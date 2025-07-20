@@ -35,7 +35,14 @@ docker compose run --rm tests composer test
 
 # Build the theme assets
 npm run --prefix generations/third/newmr-theme build
+
+# (Optional) Import production content and uploads
+scripts/pull-production-data.sh
 ```
+
+The `pull-production-data.sh` helper expects environment variables such as
+`PROD_HOST`, `PROD_DB_NAME`, and `PROD_WP_PATH`. It uses SSH to dump the
+production database and sync the `wp-content/uploads` directory.
 
 ## Building the Theme
 Run `npm install` inside `generations/third/newmr-theme` and then `npm run build` to compile the Tailwind styles with Vite. Use `npm run watch` during development. The compiled CSS in `dist/style.css` is excluded from version control.
