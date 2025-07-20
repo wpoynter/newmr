@@ -40,6 +40,20 @@ services:
       - ./generations/third/newmr-theme:/var/www/html/wp-content/themes/newmr-theme
       - ./generations/third/newmr-plugin:/var/www/html/wp-content/plugins/newmr-plugin
 
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      WP_DB_HOST: db
+      WP_DB_USER: wordpress
+      WP_DB_PASS: wordpress
+      WP_DB_NAME: wordpress
+    volumes:
+      - ./:/app
+    depends_on:
+      - db
+
 volumes:
   db_data:
   wp_data:
