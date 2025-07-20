@@ -14,7 +14,8 @@ Use the root `docker-compose.yml` file to spin up a development site:
 docker compose up -d
 composer install
 npm install --prefix newmr-theme
-composer test
+docker compose run --rm tests composer test
+# Running the tests via Docker ensures consistent PHP and MySQL versions
 npm run --prefix newmr-theme build
 ```
 

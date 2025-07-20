@@ -30,7 +30,8 @@ composer install
 npm install --prefix generations/third/newmr-theme
 
 # Run the test suite
-composer test
+docker compose run --rm tests composer test
+# Running the tests via Docker ensures consistent PHP and MySQL versions
 
 # Build the theme assets
 npm run --prefix generations/third/newmr-theme build
@@ -48,7 +49,8 @@ The repository includes a licensed copy of [Tailwind UI](https://tailwindui.com)
 Run the following commands before committing:
 
 ```bash
-composer test  # Sets up tests/wordpress and runs PHPUnit
+docker compose run --rm tests composer test  # Sets up tests/wordpress and runs PHPUnit
+# Running the tests via Docker ensures consistent PHP and MySQL versions
 npm run lint   # Check code style
 ```
 

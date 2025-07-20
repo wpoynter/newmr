@@ -11,9 +11,9 @@ This repository hosts multiple generations of the NewMR codebase.
 - **JavaScript/CSS**: format using Prettier. Run `npm run lint` (or `npx prettier --check .`) before committing.
 
 ### Running tests
-Run `composer install` once to fetch dependencies. `composer test` automatically
+Run `composer install` once to fetch dependencies. `docker compose run --rm tests composer test` automatically
 sets up a fresh WordPress instance in `tests/wordpress` before running the
-PHPUnit suite.
+PHPUnit suite. This ensures consistent PHP and MySQL versions.
 
 ### Building the theme
 Run `npm install` in `generations/third/newmr-theme` once. Use `npm run build` to compile assets and `npm run watch` for development.
@@ -23,7 +23,7 @@ Run `npm install` in `generations/third/newmr-theme` once. Use `npm run build` t
 - Keep commits focused: one logical change per commit.
  - Run linters and tests prior to committing:
   - `composer lint`
-  - `composer test`
+  - `docker compose run --rm tests composer test`
   - `npm run lint`
 - Ensure all checks pass before opening a pull request.
 
