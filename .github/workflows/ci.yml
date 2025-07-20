@@ -42,14 +42,21 @@ jobs:
       - name: Lint PHP
         run: composer lint
 
+      - name: Start db
+        run: docker compose up -d db
+
+      - name: Wait for db
+        run: |
+          for i in {1..30}; do
+            if docker compose exec db mysqladmin ping -hlocalhost -uwordpress -pwordpress --silent; then
+              echo "Database is up"
+              break
+            fi
+            sleep 5
+          done
+
       - name: Run PHPUnit
-        env:
-          WP_DB_HOST: 127.0.0.1
-          WP_DB_USER: root
-          WP_DB_PASS: root
-          WP_DB_NAME: wordpress
-          WP_PHPUNIT__DIR: vendor/wp-phpunit/wp-phpunit
-        run: composer test
+        run: docker compose run --rm tests composer test
 
       - name: Lint JS/CSS
         working-directory: generations/third/newmr-theme
