@@ -261,6 +261,7 @@ require_once __DIR__ . '/includes/class-newmr-dashboard-glancer.php';
 require_once __DIR__ . '/includes/class-newmr-adverts-widget.php';
 require_once __DIR__ . '/includes/class-newmr-settings.php';
 require_once __DIR__ . '/includes/class-newmr-post-connections.php';
+require_once __DIR__ . '/includes/class-newmr-meta-boxes.php';
 require_once __DIR__ . '/includes/jetpack-mobile.php';
 
 $connections = new NewMR_Post_Connections();
@@ -290,6 +291,9 @@ add_action( 'wp_head', 'newmr_output_ga' );
 
 // Initialize settings page.
 $newmr_settings = new NewMR_Settings();
+
+// Register custom meta boxes.
+$newmr_meta_boxes = new NewMR_Meta_Boxes();
 
 /**
  * Normalize person slugs by replacing spaces with hyphens and lowering case.
