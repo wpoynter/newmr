@@ -200,8 +200,14 @@ add_action( 'init', 'newmr_register_post_types' );
  * Placeholder for plugin activation hook.
  */
 function newmr_plugin_activate() {
-		newmr_register_post_types();
-		flush_rewrite_rules();
+				newmr_register_post_types();
+				add_option( 'newmr_front_middle_left', '' );
+				add_option( 'newmr_front_bottom_right', '' );
+				add_option( 'newmr_ga_tracking_code', '' );
+				add_option( 'newmr_left_footer_link', '' );
+				add_option( 'newmr_right_footer_link', '' );
+				add_option( 'newmr_featured_video', '' );
+				flush_rewrite_rules();
 }
 register_activation_hook( __FILE__, 'newmr_plugin_activate' );
 
@@ -248,6 +254,7 @@ add_filter( 'post_type_link', 'newmr_event_permalink', 10, 3 );
  */
 require_once __DIR__ . '/includes/class-newmr-dashboard-glancer.php';
 require_once __DIR__ . '/includes/class-newmr-adverts-widget.php';
+require_once __DIR__ . '/includes/class-newmr-settings.php';
 
 
 // Register dashboard glancer items for custom post types.
@@ -258,6 +265,19 @@ $glancer->add( array( 'advert', 'booth', 'event', 'presentation', 'person' ) );
 add_action(
 	'widgets_init',
 	static function () {
-				register_widget( 'NewMR_Adverts_Widget' );
+								register_widget( 'NewMR_Adverts_Widget' );
 	}
 );
+
+/**
+ * Output Google Analytics script if tracking code is set.
+ */
+function newmr_output_ga() {
+	if ( get_option( 'newmr_ga_tracking_code' ) ) {
+			require __DIR__ . '/includes/googleanalytics.php';
+	}
+}
+add_action( 'wp_head', 'newmr_output_ga' );
+
+// Initialize settings page.
+$newmr_settings = new NewMR_Settings();
