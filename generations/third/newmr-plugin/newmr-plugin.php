@@ -255,6 +255,7 @@ add_filter( 'post_type_link', 'newmr_event_permalink', 10, 3 );
 require_once __DIR__ . '/includes/class-newmr-dashboard-glancer.php';
 require_once __DIR__ . '/includes/class-newmr-adverts-widget.php';
 require_once __DIR__ . '/includes/class-newmr-settings.php';
+require_once __DIR__ . '/includes/jetpack-mobile.php';
 
 
 // Register dashboard glancer items for custom post types.
