@@ -18,7 +18,17 @@
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
-      "johnpbloch/wordpress-core-installer": true
+      "johnpbloch/wordpress-core-installer": true,
+      "composer/installers": true
     }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
+  ],
+  "require": {
+    "wpackagist-plugin/posts-to-posts": "^1.7"
   }
 }

@@ -12,7 +12,12 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+		exit; // Exit if accessed directly.
+}
+
+$p2p_plugin = dirname( __DIR__, 3 ) . '/wp-content/plugins/posts-to-posts/posts-to-posts.php';
+if ( is_readable( $p2p_plugin ) ) {
+		require_once $p2p_plugin;
 }
 
 /**
@@ -255,7 +260,10 @@ add_filter( 'post_type_link', 'newmr_event_permalink', 10, 3 );
 require_once __DIR__ . '/includes/class-newmr-dashboard-glancer.php';
 require_once __DIR__ . '/includes/class-newmr-adverts-widget.php';
 require_once __DIR__ . '/includes/class-newmr-settings.php';
+require_once __DIR__ . '/includes/class-newmr-post-connections.php';
 require_once __DIR__ . '/includes/jetpack-mobile.php';
+
+$connections = new NewMR_Post_Connections();
 
 
 // Register dashboard glancer items for custom post types.
