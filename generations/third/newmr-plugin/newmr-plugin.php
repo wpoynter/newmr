@@ -281,3 +281,84 @@ add_action( 'wp_head', 'newmr_output_ga' );
 
 // Initialize settings page.
 $newmr_settings = new NewMR_Settings();
+
+/**
+ * Normalize person slugs by replacing spaces with hyphens and lowering case.
+ *
+ * @param string $slug       Proposed slug.
+ * @param int    $post_ID    Post ID.
+ * @param string $post_status Post status.
+ * @param string $post_type  Post type.
+ * @param int    $post_parent Post parent ID.
+ *
+ * @return string Filtered slug.
+ */
+function newmr_person_unique_slug( $slug, $post_ID, $post_status, $post_type, $post_parent ) {
+	unset( $post_ID, $post_status, $post_parent );
+
+	if ( 'person' !== $post_type ) {
+		return $slug;
+	}
+
+	return strtolower( str_replace( array( '%20', ' ' ), '-', $slug ) );
+}
+add_filter( 'wp_unique_post_slug', 'newmr_person_unique_slug', 10, 5 );
+
+/**
+ * Disable AddToAny sharing buttons on custom post types.
+ *
+ * @param bool $sharing_disabled Current disabled state.
+ *
+ * @return bool
+ */
+function share_in_posts( $sharing_disabled ) {
+	global $post;
+
+	return $sharing_disabled || in_array( $post->post_type, array( 'advert', 'booth', 'presentation', 'event', 'person' ), true );
+}
+add_filter( 'addtoany_sharing_disabled', 'share_in_posts' );
+
+/**
+ * Modify queries for custom post types.
+ *
+ * Replicates legacy behaviour for sorting and paging.
+ *
+ * @param WP_Query $query Query instance.
+ */
+function newmr_modify_queries( WP_Query $query ) {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$type = $query->get( 'post_type' );
+
+	if ( ! $query->get( 'posts_per_page' ) && $type ) {
+		switch ( $type ) {
+			case 'person':
+				$query->set( 'posts_per_page', -1 );
+				$query->set( 'orderby', 'title' );
+				$query->set( 'order', 'ASC' );
+				break;
+			case 'booth':
+				$query->set( 'posts_per_page', -1 );
+				break;
+		}
+	}
+
+	if ( 'booth' === $type || 'advert' === $type ) {
+		$query->set( 'order', 'ASC' );
+	}
+
+	if ( 'person' === $type ) {
+		$name   = $query->get( 'name' );
+		$person = $query->get( 'person' );
+
+		if ( $name ) {
+			$query->set( 'name', strtolower( str_replace( array( '%20', ' ' ), '-', $name ) ) );
+		}
+		if ( $person ) {
+			$query->set( 'person', strtolower( str_replace( array( '%20', ' ' ), '-', $person ) ) );
+		}
+	}
+}
+add_action( 'pre_get_posts', 'newmr_modify_queries' );
