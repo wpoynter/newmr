@@ -9,6 +9,9 @@ class JetpackMobileTest extends WP_UnitTestCase {
         parent::set_up();
         newmr_plugin_activate();
 
+        // Provide a user agent so mobile checks don't fail early.
+        $_SERVER['HTTP_USER_AGENT'] = 'WordPress PHPUnit';
+
         // Ensure jetpack_is_mobile() can be mocked.
         if ( ! function_exists( 'jetpack_is_mobile' ) ) {
             function jetpack_is_mobile() {
@@ -27,6 +30,7 @@ class JetpackMobileTest extends WP_UnitTestCase {
         if ( file_exists( $this->mobile_template ) ) {
             unlink( $this->mobile_template );
         }
+        unset( $_SERVER['HTTP_USER_AGENT'] );
         parent::tear_down();
     }
 
