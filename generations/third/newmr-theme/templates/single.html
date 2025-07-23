@@ -1,6 +1,22 @@
 <!-- wp:group {"tagName":"article","className":"prose mx-auto py-8"} -->
 <article class="prose mx-auto py-8">
   <!-- wp:post-title {"level":1,"className":"mb-4"} /-->
+  <!-- wp:group {"className":"text-sm text-gray-500 mb-6 flex gap-x-2"} -->
+  <div class="text-sm text-gray-500 mb-6 flex gap-x-2">
+    <!-- wp:post-date /-->
+    <!-- wp:post-author-name /-->
+    <!-- wp:post-terms {"taxonomy":"category"} /-->
+  </div>
+  <!-- /wp:group -->
   <!-- wp:post-content /-->
 </article>
 <!-- /wp:group -->
+
+<!-- wp:group {"className":"mx-auto max-w-2xl my-12 flex justify-between"} -->
+<div class="mx-auto max-w-2xl my-12 flex justify-between">
+  <!-- wp:post-navigation-link {"type":"previous","label":"Previous"} /-->
+  <!-- wp:post-navigation-link {"type":"next","label":"Next"} /-->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"comments"} /-->
