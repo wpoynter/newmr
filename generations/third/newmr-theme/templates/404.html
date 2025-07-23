@@ -1,11 +1,41 @@
-<!-- wp:group {"tagName":"main","className":"py-8 text-center"} -->
-<main id="content" class="py-8 text-center">
-  <!-- wp:heading {"level":1,"className":"text-4xl mb-4"} -->
-  <h1 class="text-4xl mb-4">Not Found</h1>
+<!-- wp:group {"tagName":"main","className":"py-8 text-center space-y-6"} -->
+<main id="content" class="py-8 text-center space-y-6">
+  <!-- wp:heading {"level":1,"className":"text-4xl"} -->
+  <h1 class="text-4xl">Not Found</h1>
   <!-- /wp:heading -->
-  <!-- wp:paragraph {"className":"mb-4"} -->
-  <p>Sorry, but the page you were looking for could not be found.</p>
+  <!-- wp:paragraph -->
+  <p>It looks like nothing was found at this location. Maybe try a search?</p>
   <!-- /wp:paragraph -->
-  <!-- wp:search {"label":"Search","showLabel":false} /-->
+  <form
+    role="search"
+    method="get"
+    action="/"
+    class="mx-auto flex max-w-md rounded-3xl bg-white py-2.5 pr-2.5 shadow-xl shadow-blue-900/5 focus-within:ring-2 focus-within:ring-brand"
+  >
+    <label for="search-field" class="sr-only">Search</label>
+    <input
+      id="search-field"
+      type="search"
+      name="s"
+      placeholder="Search"
+      required
+      class="-my-2.5 flex-auto bg-transparent pl-6 pr-2.5 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none"
+    />
+    <button type="submit" class="ml-2 rounded-md bg-brand px-3 py-2 text-white">
+      <span class="sr-only sm:not-sr-only">Search</span>
+      <span class="sm:hidden">
+        <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6">
+          <path
+            d="m14 7 5 5-5 5M19 12H5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+    </button>
+  </form>
 </main>
 <!-- /wp:group -->

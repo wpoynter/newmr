@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   db:
     image: mariadb:10.6
@@ -40,6 +39,15 @@ services:
       - ./generations/third/newmr-theme:/var/www/html/wp-content/themes/newmr-theme
       - ./generations/third/newmr-plugin:/var/www/html/wp-content/plugins/newmr-plugin
 
+  assets:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: >-
+      sh -c "npm install --prefix generations/third/newmr-theme && \
+      npm run --prefix generations/third/newmr-theme watch"
+
   tests:
     build:
       context: .
@@ -53,6 +61,16 @@ services:
       - ./:/app
     depends_on:
       - db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 128M
+    ports:
+      - "8080:80"
 
 volumes:
   db_data:
