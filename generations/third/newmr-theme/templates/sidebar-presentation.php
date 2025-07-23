@@ -13,25 +13,18 @@ $people = new WP_Query(
 	)
 );
 if ( $people->have_posts() ) : ?>
-<!-- wp:group {"tagName":"aside","className":"p-4 bg-gray-50"} -->
-<aside class="p-4 bg-gray-50" id="presenters">
+<!-- wp:group {"tagName":"aside","className":"p-4 bg-gray-50 hidden lg:block"} -->
+<aside class="p-4 bg-gray-50 hidden lg:block" id="presenters">
 	<?php
 	while ( $people->have_posts() ) :
 		$people->the_post();
-		?>
-	<div class="presenter flex items-center gap-3 mb-4">
-		<?php the_post_thumbnail( array( 80, 80 ) ); ?>
-	<div>
-		<h4 class="font-semibold"><?php the_title(); ?></h4>
-		<span class="block text-sm text-gray-500"><?php echo esc_html( get_post_meta( get_the_ID(), 'person_company', true ) ); ?></span>
-		<span class="block text-sm text-gray-500"><?php echo esc_html( get_post_meta( get_the_ID(), 'person_country', true ) ); ?></span>
-	</div>
-	</div>
-		<?php
-	endwhile;
+		get_template_part( 'parts/speaker-card' );
+endwhile;
 	wp_reset_postdata();
 	?>
 </aside>
 <!-- /wp:group -->
 <?php endif; ?>
+<aside class="hidden lg:block" aria-label="<?php esc_attr_e( 'Advertisement', 'newmr' ); ?>">
 <?php get_sidebar(); ?>
+</aside>
