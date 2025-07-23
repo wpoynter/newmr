@@ -225,6 +225,28 @@ add_shortcode( 'donate_box', 'donate_box' );
 add_shortcode( 'about_newmr_box', 'about_newmr_box' );
 add_shortcode( 'left_footer_link', 'left_footer_link' );
 add_shortcode( 'right_footer_link', 'right_footer_link' );
+
+/**
+ * Output the current person's company meta value.
+ *
+ * @return string
+ */
+function newmr_person_company() {
+	return '<span class="block text-sm text-gray-500">' . esc_html( get_post_meta( get_the_ID(), 'person_company', true ) ) . '</span>';
+}
+
+/**
+ * Output the current person's country meta value.
+ *
+ * @return string
+ */
+function newmr_person_country() {
+	return '<span class="block text-sm text-gray-500">' . esc_html( get_post_meta( get_the_ID(), 'person_country', true ) ) . '</span>';
+}
+
+add_shortcode( 'person_company', 'newmr_person_company' );
+add_shortcode( 'person_country', 'newmr_person_country' );
+
 /**
  * Return formatted event date range based on meta fields.
  *
