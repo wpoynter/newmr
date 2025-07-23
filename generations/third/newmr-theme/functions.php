@@ -221,15 +221,11 @@ function newmr_events_page_shortcode() {
 		echo '</div>';
 		return ob_get_clean();
 }
-add_shortcode( 'events_page', 'newmr_events_page_shortcode' );
+
 
 /**
  * Register helper shortcodes so block templates can invoke theme functions.
  */
-add_shortcode( 'donate_box', 'donate_box' );
-add_shortcode( 'about_newmr_box', 'about_newmr_box' );
-add_shortcode( 'left_footer_link', 'left_footer_link' );
-add_shortcode( 'right_footer_link', 'right_footer_link' );
 
 /**
  * Shortcode to output the person's company.
@@ -244,7 +240,6 @@ function newmr_person_company_shortcode() {
 
 		return '<span class="block text-sm text-gray-500">' . esc_html( $company ) . '</span>';
 }
-add_shortcode( 'person_company', 'newmr_person_company_shortcode' );
 
 /**
  * Shortcode to output the person's country.
@@ -259,7 +254,6 @@ function newmr_person_country_shortcode() {
 
 		return '<span class="block text-sm text-gray-500">' . esc_html( $country ) . '</span>';
 }
-add_shortcode( 'person_country', 'newmr_person_country_shortcode' );
 /**
  * Output the current person's company meta value.
  *
@@ -278,8 +272,6 @@ function newmr_person_country() {
 	return '<span class="block text-sm text-gray-500">' . esc_html( get_post_meta( get_the_ID(), 'person_country', true ) ) . '</span>';
 }
 
-add_shortcode( 'person_company', 'newmr_person_company' );
-add_shortcode( 'person_country', 'newmr_person_country' );
 
 /**
  * Return formatted event date range based on meta fields.
@@ -301,7 +293,6 @@ function newmr_event_dates() {
 	}
 		return '<span class="event-dates">' . esc_html( $dates ) . '</span>';
 }
-add_shortcode( 'event_dates', 'newmr_event_dates' );
 
 /**
  * Output a "Free" badge when the event_free meta equals "yes".
@@ -315,4 +306,3 @@ function newmr_free_badge() {
 	}
 		return '';
 }
-add_shortcode( 'free_badge', 'newmr_free_badge' );
