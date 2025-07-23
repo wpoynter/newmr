@@ -1,78 +1,71 @@
-<?php
-$presentations = new WP_Query(
-    array(
-        'connected_type'  => 'presentation_to_person',
-        'connected_items' => get_post(),
-        'nopaging'        => true,
-    )
-);
-?>
+<!-- wp:template-part {"slug":"header"} /-->
+<?php $presentations = new WP_Query( array( 'connected_type' =>
+'presentation_to_person', 'connected_items' => get_post(), 'nopaging' => true, )
+); ?>
 
 <!-- wp:group {"tagName":"article","className":"prose mx-auto py-8"} -->
 <article class="prose mx-auto py-8">
-    <header class="mb-6 text-center">
-        <?php the_post_thumbnail( 'medium', array( 'class' => 'mx-auto rounded-full mb-4' ) ); ?>
-        <!-- wp:post-title {"level":1,"className":"mb-2"} /-->
-        <div class="text-gray-600">
-            <span class="block"><?php echo esc_html( get_post_meta( get_the_ID(), 'person_company', true ) ); ?></span>
-            <span class="block"><?php echo esc_html( get_post_meta( get_the_ID(), 'person_country', true ) ); ?></span>
-        </div>
-    </header>
-    <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">Biography</h2>
-        <?php the_content(); ?>
-    </section>
+  <header class="mb-6 text-center">
+    <?php the_post_thumbnail( 'medium', array( 'class' => 'mx-auto rounded-full
+    mb-4' ) ); ?>
+    <!-- wp:post-title {"level":1,"className":"mb-2"} /-->
+    <div class="text-gray-600">
+      <span class="block"
+        ><?php echo esc_html( get_post_meta( get_the_ID(), 'person_company', true ) ); ?></span
+      >
+      <span class="block"
+        ><?php echo esc_html( get_post_meta( get_the_ID(), 'person_country', true ) ); ?></span
+      >
+    </div>
+  </header>
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-4">Biography</h2>
+    <?php the_content(); ?>
+  </section>
 </article>
 <!-- /wp:group -->
 
 <?php if ( $presentations->have_posts() ) : ?>
 <div class="presentations-list max-w-3xl mx-auto my-8">
-    <h2 class="text-xl font-semibold mb-4">Presentations</h2>
-    <table class="min-w-full divide-y divide-gray-200">
-        <thead>
-            <tr class="bg-gray-50">
-                <th class="speaker-col p-2 text-left">Speaker</th>
-                <th class="title-col p-2 text-left">Title</th>
-                <th class="watch-col p-2">Watch</th>
-                <th class="download-col p-2">Download Slides</th>
-            </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-            <?php
-            while ( $presentations->have_posts() ) :
-                $presentations->the_post();
-                $speakers = new WP_Query(
-                    array(
-                        'connected_type'  => 'presentation_to_person',
-                        'connected_items' => get_post(),
-                        'nopaging'        => true,
-                    )
-                );
-                $persons = array();
-                while ( $speakers->have_posts() ) {
-                    $speakers->the_post();
-                    $persons[] = '<a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a>';
-                }
-                wp_reset_postdata();
-                ?>
-            <tr>
-                <td class="speaker-col p-2"><?php echo wp_kses_post( implode( ', ', $persons ) ); ?></td>
-                <td class="title-col p-2"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></td>
-                <td class="watch-col p-2"><a href="<?php the_permalink(); ?>">Watch</a></td>
-                <td class="download-col p-2">
-                    <?php
-                    $slides = get_post_meta( get_the_ID(), 'presentation_slides', true );
-                    if ( $slides ) :
-                        ?>
-                    <a href="<?php echo esc_url( $slides ); ?>">Download</a>
-                    <?php endif; ?>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+  <h2 class="text-xl font-semibold mb-4">Presentations</h2>
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead>
+      <tr class="bg-gray-50">
+        <th class="speaker-col p-2 text-left">Speaker</th>
+        <th class="title-col p-2 text-left">Title</th>
+        <th class="watch-col p-2">Watch</th>
+        <th class="download-col p-2">Download Slides</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <?php while ( $presentations->have_posts() ) : $presentations->the_post();
+      $speakers = new WP_Query( array( 'connected_type' =>
+      'presentation_to_person', 'connected_items' => get_post(), 'nopaging' =>
+      true, ) ); $persons = array(); while ( $speakers->have_posts() ) {
+      $speakers->the_post(); $persons[] = '<a
+        href="' . esc_url( get_permalink() ) . '"
+        >' . esc_html( get_the_title() ) . '</a
+      >'; } wp_reset_postdata(); ?>
+      <tr>
+        <td class="speaker-col p-2">
+          <?php echo wp_kses_post( implode( ', ', $persons ) ); ?>
+        </td>
+        <td class="title-col p-2">
+          <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+        </td>
+        <td class="watch-col p-2">
+          <a href="<?php the_permalink(); ?>">Watch</a>
+        </td>
+        <td class="download-col p-2">
+          <?php $slides = get_post_meta( get_the_ID(), 'presentation_slides',
+          true ); if ( $slides ) : ?>
+          <a href="<?php echo esc_url( $slides ); ?>">Download</a>
+          <?php endif; ?>
+        </td>
+      </tr>
+      <?php endwhile; ?>
+    </tbody>
+  </table>
 </div>
-<?php
-endif;
-wp_reset_postdata();
-?>
+<?php endif; wp_reset_postdata(); ?>
+<!-- wp:template-part {"slug":"footer"} /-->
