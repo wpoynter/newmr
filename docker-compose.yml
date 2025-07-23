@@ -40,6 +40,15 @@ services:
       - ./generations/third/newmr-theme:/var/www/html/wp-content/themes/newmr-theme
       - ./generations/third/newmr-plugin:/var/www/html/wp-content/plugins/newmr-plugin
 
+  assets:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: >-
+      sh -c "npm install --prefix generations/third/newmr-theme && \
+      npm run --prefix generations/third/newmr-theme watch"
+
   tests:
     build:
       context: .

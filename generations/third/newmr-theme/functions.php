@@ -11,7 +11,24 @@
 function newmr_theme_setup() {
 	add_theme_support( 'wp-block-styles' );
 }
+
 add_action( 'after_setup_theme', 'newmr_theme_setup' );
+
+/**
+ * Enqueue the compiled Tailwind CSS if present.
+ */
+function newmr_enqueue_assets() {
+	$css = get_theme_file_path( 'dist/style.css' );
+	if ( file_exists( $css ) ) {
+		wp_enqueue_style(
+			'newmr-theme',
+			get_theme_file_uri( 'dist/style.css' ),
+			array(),
+			filemtime( $css )
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'newmr_enqueue_assets' );
 
 /**
  * Output the donate box content.
