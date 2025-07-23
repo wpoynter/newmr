@@ -45,7 +45,7 @@ The `pull-production-data.sh` helper expects environment variables such as
 production database and sync the `wp-content/uploads` directory.
 
 ## Building the Theme
-Run `npm install` inside `generations/third/newmr-theme` and then `npm run build` to compile the Tailwind styles with Vite. Use `npm run watch` during development. The compiled CSS in `dist/style.css` is excluded from version control.
+Run `npm install` inside `generations/third/newmr-theme` and then `npm run build` to compile the Tailwind styles with Vite. During development start the `assets` service with `docker compose up assets` to automatically rebuild the CSS when files change. The compiled CSS in `dist/style.css` is excluded from version control.
 
 ## Tailwind UI Resources
 The repository includes a licensed copy of [Tailwind UI](https://tailwindui.com) under the `tailwindui/` directory. These components and templates are used for the third-generation UI. See `generations/third/TailwindUI.md` for usage instructions.
