@@ -23,4 +23,29 @@ wp option update newmr_left_footer_link   "$LEFT_PAGE_SLUG"
 wp option update newmr_right_footer_link  "$RIGHT_PAGE_SLUG"
 wp option update newmr_featured_video     "$FEATURED_VIDEO_SLUG"
 
+
 echo "NewMR options updated."
+
+# Ensure static front page (Home) and posts page (Blog) exist and are configured.
+# Create Home page if missing and set as front page.
+HOME_PAGE_ID=$(wp post list --post_type=page --field=ID --format=ids --title="Home" || true)
+if [ -z "$HOME_PAGE_ID" ]; then
+  HOME_PAGE_ID=$(wp post create --post_type=page --post_title="Home" --post_status=publish --porcelain)
+else
+  # Ensure slug is consistent
+  wp post update "$HOME_PAGE_ID" --post_name=home >/dev/null
+fi
+
+# Create Blog page if missing and set as posts page.
+BLOG_PAGE_ID=$(wp post list --post_type=page --field=ID --format=ids --title="Blog" || true)
+if [ -z "$BLOG_PAGE_ID" ]; then
+  BLOG_PAGE_ID=$(wp post create --post_type=page --post_title="Blog" --post_status=publish --porcelain)
+else
+  wp post update "$BLOG_PAGE_ID" --post_name=blog >/dev/null
+fi
+
+wp option update show_on_front page
+wp option update page_on_front "$HOME_PAGE_ID"
+wp option update page_for_posts "$BLOG_PAGE_ID"
+
+echo "Front page set to Home (ID: $HOME_PAGE_ID), posts page set to Blog (ID: $BLOG_PAGE_ID)."

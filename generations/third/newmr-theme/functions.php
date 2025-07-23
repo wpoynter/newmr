@@ -260,6 +260,7 @@ function newmr_person_country_shortcode() {
 		return '<span class="block text-sm text-gray-500">' . esc_html( $country ) . '</span>';
 }
 add_shortcode( 'person_country', 'newmr_person_country_shortcode' );
+/** 
  * Output the current person's company meta value.
  *
  * @return string

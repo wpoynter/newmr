@@ -65,6 +65,8 @@ docker compose run --rm wpcli scripts/set-newmr-options.sh
 The command is idempotent; running it multiple times will update the same
 options without creating duplicates.
 
+The setup script also ensures that a static front page ("Home") and a posts page ("Blog") exist and configures WordPress to use them appropriately.
+
 ## Building the Theme
 Run `npm install` inside `generations/third/newmr-theme` and then `npm run build` to compile the Tailwind styles with Vite. During development start the `assets` service with `docker compose up assets` to automatically rebuild the CSS when files change. The compiled CSS in `dist/style.css` is excluded from version control.
 
@@ -93,4 +95,3 @@ The following features still need to be ported:
 - Theme settings page including Google Analytics support.
 - Sorting rules for custom post type archives.
 - Jetpack/mobile theme integration and share button logic.
-

@@ -34,10 +34,18 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
+      DONATE_BOX_HTML: '<a href="https://newmr.org/support-newmr/"><img data-recalc-dims="1" decoding="async" src="https://i0.wp.com/newmr.org/wp-content/uploads/sites/2/2025/01/Support-us-Please.png?ssl=1" alt="“NewMR" patrons”=""></a>'
+      ABOUT_BOX_HTML: '<h3>About NewMR</h3><p>NewMR organises online events, this website &amp; the LinkedIn NewMR group. NewMR is owned and operated by The Future Place and managed by Ray Poynter.</p><p> NewMR partners with <a href="https://researchwiseai.com"> ResearchWiseAI</a> to provide training courses and a range of AI-assisted tools.</p><p>To read our Data Privacy and GDPR statement, <a href="https://newmr.org/gdpr/">click here</a>. Keep in touch by <a href="http://eepurl.com/hAnKA">signing up to our mailings</a>. NewMR.org is funded by donations &amp; sponsorship.</p><p>Our sponsors are: Hello Ara, Platform One, Fuel, Indiefield, Enghouse, Infotools, QuestionPro, YouScan, Yasna.</p>'
+      GA_CODE: 'GT-M3VRRZ2'
+      LEFT_PAGE_SLUG: gdpr
+      RIGHT_PAGE_SLUG: gdpr
+      FEATURED_VIDEO_SLUG: 387df3a0
+    working_dir: /var/www/html
     volumes:
       - wp_data:/var/www/html
       - ./generations/third/newmr-theme:/var/www/html/wp-content/themes/newmr-theme
       - ./generations/third/newmr-plugin:/var/www/html/wp-content/plugins/newmr-plugin
+      - ./scripts:/var/www/html/scripts
 
   assets:
     image: node:18
