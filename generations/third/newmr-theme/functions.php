@@ -227,6 +227,34 @@ add_shortcode( 'left_footer_link', 'left_footer_link' );
 add_shortcode( 'right_footer_link', 'right_footer_link' );
 
 /**
+ * Shortcode to output the person's company.
+ *
+ * @return string HTML markup for the company field.
+ */
+function newmr_person_company_shortcode() {
+		$company = get_post_meta( get_the_ID(), 'person_company', true );
+	if ( ! $company ) {
+			return '';
+	}
+
+		return '<span class="block text-sm text-gray-500">' . esc_html( $company ) . '</span>';
+}
+add_shortcode( 'person_company', 'newmr_person_company_shortcode' );
+
+/**
+ * Shortcode to output the person's country.
+ *
+ * @return string HTML markup for the country field.
+ */
+function newmr_person_country_shortcode() {
+		$country = get_post_meta( get_the_ID(), 'person_country', true );
+	if ( ! $country ) {
+			return '';
+	}
+
+		return '<span class="block text-sm text-gray-500">' . esc_html( $country ) . '</span>';
+}
+add_shortcode( 'person_country', 'newmr_person_country_shortcode' );
  * Output the current person's company meta value.
  *
  * @return string

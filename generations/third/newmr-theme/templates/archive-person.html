@@ -1,10 +1,17 @@
 <!-- wp:group {"tagName":"main","className":"py-8"} -->
 <main id="content" class="py-8">
   <!-- wp:query-title {"className":"text-3xl font-bold text-center mb-8"} /-->
-  <!-- wp:post-template {"className":"space-y-12 max-w-2xl mx-auto"} -->
-  <!-- wp:post-title {"isLink":true,"className":"text-2xl font-semibold"} /-->
-  <!-- wp:post-excerpt {"className":"text-gray-700"} /-->
-  <!-- wp:post-date {"className":"text-sm text-gray-500"} /-->
+  <!-- wp:post-template {"className":"grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto"} -->
+  <!-- wp:group {"tagName":"article","className":"flex flex-col items-center text-center bg-white rounded-lg shadow p-4 space-y-1"} -->
+  <article
+    class="flex flex-col items-center text-center bg-white rounded-lg shadow p-4 space-y-1"
+  >
+    <!-- wp:post-featured-image {"className":"w-24 h-24 rounded-full object-cover mb-2"} /-->
+    <!-- wp:post-title {"isLink":true,"level":3,"className":"font-semibold"} /-->
+    <!-- wp:shortcode -->[person_company]<!-- /wp:shortcode -->
+    <!-- wp:shortcode -->[person_country]<!-- /wp:shortcode -->
+  </article>
+  <!-- /wp:group -->
   <!-- /wp:post-template -->
 </main>
 <!-- /wp:group -->
