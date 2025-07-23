@@ -1,7 +1,28 @@
 <!-- wp:group {"tagName":"article","className":"prose mx-auto py-8"} -->
 <article class="prose mx-auto py-8">
   <!-- wp:post-title {"level":1,"className":"mb-4"} /-->
-  <!-- wp:post-content /-->
+  <?php $content = get_the_content(); if ( strlen( trim( $content ) ) > 0 ) {
+  the_content(); } else { $mp4 = get_post_meta( get_the_ID(),
+  'presentation_mp4file', true ); $webm = get_post_meta( get_the_ID(),
+  'presentation_webmfile', true ); $ogv = get_post_meta( get_the_ID(),
+  'presentation_ogvfile', true ); if ( $mp4 || $webm || $ogv ) : ?>
+  <video class="w-full rounded-lg mb-4" controls preload="auto">
+    <?php if ( $mp4 ) : ?>
+    <source src="<?php echo esc_url( $mp4 ); ?>" type="video/mp4" />
+    <?php endif; ?> <?php if ( $webm ) : ?>
+    <source src="<?php echo esc_url( $webm ); ?>" type="video/webm" />
+    <?php endif; ?> <?php if ( $ogv ) : ?>
+    <source src="<?php echo esc_url( $ogv ); ?>" type="video/ogg" />
+    <?php endif; ?>
+  </video>
+  <?php endif; } $slides = get_post_meta( get_the_ID(), 'presentation_slides',
+  true ); if ( $slides ) : ?>
+  <a
+    href="<?php echo esc_url( $slides ); ?>"
+    class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+    ><?php esc_html_e( 'Download Slides', 'newmr' ); ?></a
+  >
+  <?php endif; ?>
 </article>
 <!-- /wp:group -->
 
