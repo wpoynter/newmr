@@ -1,3 +1,4 @@
+<?php get_header(); ?>
 <!-- wp:group {"tagName":"main","className":"py-8 space-y-12"} -->
 <main class="py-8 space-y-12">
   <!-- wp:query {"query":{"postType":"advert","metaKey":"advert_site","metaValue":"yes","orderBy":"menu_order","order":"asc"}} -->
@@ -30,3 +31,4 @@
   <!-- wp:shortcode -->[about_newmr_box]<!-- /wp:shortcode -->
 </main>
 <!-- /wp:group -->
+<?php get_footer(); ?>
