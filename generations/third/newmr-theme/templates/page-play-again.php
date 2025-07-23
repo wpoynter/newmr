@@ -138,7 +138,7 @@ if ( isset( $wp_query->query_vars['one'] ) && '' !== $wp_query->query_vars['one'
 								<?php endif; ?>
 								<div>
 										<h2 class="text-xl font-semibold">
-												<a href="<?php echo esc_url( site_url( '/play-again/' . get_post()->post_name ) ); ?>" class="hover:underline">
+												<a href="<?php echo esc_url( home_url( '/play-again/' . get_post()->post_name ) ); ?>" class="hover:underline">
 														<?php the_title(); ?>
 												</a>
 										</h2>
