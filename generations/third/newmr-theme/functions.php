@@ -65,8 +65,141 @@ function right_footer_link() {
  * @return string
  */
 function featured_video_slug() {
-	return get_option( 'newmr_featured_video', '' );
+		return get_option( 'newmr_featured_video', '' );
 }
+
+/**
+ * Output event lists for the Events page.
+ *
+ * Displays upcoming, open, and past events using the excerpt templates.
+ *
+ * @return string Event listings markup.
+ */
+function newmr_events_page_shortcode() {
+		$today = mktime( 23, 59, 59 );
+		ob_start();
+	// Container wrapper.
+		echo '<div class="space-y-12">';
+
+		$up_query = new WP_Query(
+			array(
+				'post_type'      => 'event',
+				'post_parent'    => 0,
+				'posts_per_page' => -1,
+				'meta_key'       => 'event_date_to',
+				'orderby'        => 'meta_value_num',
+				'order'          => 'ASC',
+				'meta_query'     => array(
+					array(
+						'key'     => 'event_events_page',
+						'value'   => 'yes',
+						'compare' => '=',
+					),
+					array(
+						'key'     => 'event_date_to',
+						'value'   => $today,
+						'compare' => '>=',
+					),
+				),
+			)
+		);
+
+	if ( $up_query->have_posts() ) {
+			echo '<section class="space-y-6">';
+			echo '<h2 class="text-2xl font-bold">' . esc_html__( 'Upcoming Events', 'newmr' ) . '</h2>';
+		while ( $up_query->have_posts() ) {
+				$up_query->the_post();
+				get_template_part( 'excerpt', get_post_type() );
+		}
+			echo '</section>';
+			wp_reset_postdata();
+	}
+
+		$open_query = new WP_Query(
+			array(
+				'post_type'      => 'event',
+				'post_parent'    => 0,
+				'posts_per_page' => -1,
+				'meta_query'     => array(
+					array(
+						'key'     => 'event_events_page',
+						'value'   => 'yes',
+						'compare' => '=',
+					),
+					array(
+						'key'     => 'event_date_from',
+						'value'   => '',
+						'compare' => '=',
+					),
+					array(
+						'key'     => 'event_date_to',
+						'value'   => '',
+						'compare' => '=',
+					),
+				),
+			)
+		);
+
+	if ( $open_query->have_posts() ) {
+			echo '<section class="space-y-6">';
+			echo '<h2 class="text-2xl font-bold">' . esc_html__( 'Open Events', 'newmr' ) . '</h2>';
+		while ( $open_query->have_posts() ) {
+				$open_query->the_post();
+				get_template_part( 'excerpt', get_post_type() );
+		}
+			echo '</section>';
+			wp_reset_postdata();
+	}
+
+		$down_query = new WP_Query(
+			array(
+				'post_type'      => 'event',
+				'post_parent'    => 0,
+				'posts_per_page' => -1,
+				'meta_key'       => 'event_date_to',
+				'orderby'        => 'meta_value_num',
+				'order'          => 'DESC',
+				'meta_query'     => array(
+					array(
+						'key'     => 'event_events_page',
+						'value'   => 'yes',
+						'compare' => '=',
+					),
+					array(
+						'key'     => 'event_date_to',
+						'value'   => $today,
+						'compare' => '<',
+					),
+					array(
+						'key'     => 'event_date_to',
+						'value'   => '',
+						'compare' => '!=',
+					),
+				),
+			)
+		);
+
+	if ( $down_query->have_posts() ) {
+			echo '<section class="space-y-6">';
+			$years = array();
+		while ( $down_query->have_posts() ) {
+				$down_query->the_post();
+				$datestring = get_post_meta( get_the_ID(), 'event_date_from', true );
+				$year       = gmdate( 'Y', $datestring );
+			if ( ! in_array( $year, $years, true ) ) {
+					$years[] = $year;
+					echo '<h2 class="text-2xl font-bold">' . esc_html( $year ) . '</h2>';
+			}
+				get_template_part( 'excerpt', get_post_type() );
+		}
+			echo '</section>';
+			wp_reset_postdata();
+	}
+
+		echo '</div>';
+		return ob_get_clean();
+}
+add_shortcode( 'events_page', 'newmr_events_page_shortcode' );
 
 /**
  * Register helper shortcodes so block templates can invoke theme functions.
