@@ -4,6 +4,7 @@ module.exports = {
     './*.php',
     '../newmr-plugin/**/*.php',
   ],
+  safelist: ['hidden', 'block', 'sm:hidden', 'sm:flex'],
   theme: {
     extend: {},
   },
