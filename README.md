@@ -44,6 +44,27 @@ The `pull-production-data.sh` helper expects environment variables such as
 `PROD_HOST`, `PROD_DB_NAME`, and `PROD_WP_PATH`. It uses SSH to dump the
 production database and sync the `wp-content/uploads` directory.
 
+## Automated Setup
+
+Use `scripts/set-newmr-options.sh` to configure the NewMR options via WP-CLI.
+Set the following environment variables before running the script:
+
+- `DONATE_BOX_HTML` – HTML for the Donate widget
+- `ABOUT_BOX_HTML` – HTML for the About widget
+- `GA_CODE` – Google Analytics tracking ID
+- `LEFT_PAGE_SLUG` – Slug for the left footer link
+- `RIGHT_PAGE_SLUG` – Slug for the right footer link
+- `FEATURED_VIDEO_SLUG` – Slug for the featured video page
+
+Run the script inside the `wpcli` container:
+
+```bash
+docker compose run --rm wpcli scripts/set-newmr-options.sh
+```
+
+The command is idempotent; running it multiple times will update the same
+options without creating duplicates.
+
 ## Building the Theme
 Run `npm install` inside `generations/third/newmr-theme` and then `npm run build` to compile the Tailwind styles with Vite. During development start the `assets` service with `docker compose up assets` to automatically rebuild the CSS when files change. The compiled CSS in `dist/style.css` is excluded from version control.
 
