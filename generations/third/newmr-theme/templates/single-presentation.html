@@ -1,31 +1,27 @@
 <!-- wp:template-part {"slug":"header"} /-->
-<!-- wp:group {"tagName":"article","className":"prose mx-auto py-8"} -->
-<article class="prose mx-auto py-8">
-  <!-- wp:post-title {"level":1,"className":"mb-4"} /-->
-  <?php $content = get_the_content(); if ( strlen( trim( $content ) ) > 0 ) {
-  the_content(); } else { $mp4 = get_post_meta( get_the_ID(),
-  'presentation_mp4file', true ); $webm = get_post_meta( get_the_ID(),
-  'presentation_webmfile', true ); $ogv = get_post_meta( get_the_ID(),
-  'presentation_ogvfile', true ); if ( $mp4 || $webm || $ogv ) : ?>
-  <video class="w-full rounded-lg mb-4" controls preload="auto">
-    <?php if ( $mp4 ) : ?>
-    <source src="<?php echo esc_url( $mp4 ); ?>" type="video/mp4" />
-    <?php endif; ?> <?php if ( $webm ) : ?>
-    <source src="<?php echo esc_url( $webm ); ?>" type="video/webm" />
-    <?php endif; ?> <?php if ( $ogv ) : ?>
-    <source src="<?php echo esc_url( $ogv ); ?>" type="video/ogg" />
+<main id="content" class="prose mx-auto py-8">
+  <section aria-labelledby="presentation-title">
+    <h1 id="presentation-title" class="mb-4"><?php the_title(); ?></h1>
+    <?php $content = get_the_content(); if ( strlen( trim( $content ) ) > 0 ) {
+    the_content(); } else { get_template_part( 'parts/video-embed' ); } $slides
+    = get_post_meta( get_the_ID(), 'presentation_slides', true ); if ( $slides )
+    : ?>
+    <a href="<?php echo esc_url( $slides ); ?>" class="btn inline-block mt-4"
+      ><?php esc_html_e( 'Download Slides', 'newmr' ); ?></a
+    >
     <?php endif; ?>
-  </video>
-  <?php endif; } $slides = get_post_meta( get_the_ID(), 'presentation_slides',
-  true ); if ( $slides ) : ?>
-  <a
-    href="<?php echo esc_url( $slides ); ?>"
-    class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-    ><?php esc_html_e( 'Download Slides', 'newmr' ); ?></a
+  </section>
+  <?php $people = new WP_Query( array( 'connected_type' =>
+  'presentation_to_person', 'connected_items' => get_post(), 'nopaging' => true,
+  ) ); if ( $people->have_posts() ) : ?>
+  <section
+    class="mt-6"
+    aria-label="<?php esc_attr_e( 'Speakers', 'newmr' ); ?>"
   >
+    <?php while ( $people->have_posts() ) : $people->the_post();
+    get_template_part( 'parts/speaker-card' ); endwhile; wp_reset_postdata(); ?>
+  </section>
   <?php endif; ?>
-</article>
-<!-- /wp:group -->
-
+</main>
 <!-- wp:template-part {"slug":"sidebar-presentation"} /-->
 <!-- wp:template-part {"slug":"footer"} /-->
