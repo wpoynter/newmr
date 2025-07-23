@@ -32,7 +32,7 @@ if ( have_posts() ) :
 	<header class="mb-6">
 		<h1 class="text-3xl font-bold">
 	<?php
-	esc_html_e( 'Search results for: ' );
+		esc_html_e( 'Search results for: ', 'newmr-theme' );
 	echo esc_html( get_search_query() );
 	?>
 		</h1>
@@ -143,7 +143,7 @@ if ( have_posts() ) :
 		<?php endif; ?>
 	</article>
 <?php else : ?>
-	<h2><?php esc_html_e( 'No results' ); ?></h2>
+		<h2><?php esc_html_e( 'No results', 'newmr-theme' ); ?></h2>
 <?php endif; ?>
 	</main>
 </section>
