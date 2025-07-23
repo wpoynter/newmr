@@ -65,5 +65,13 @@ function right_footer_link() {
  * @return string
  */
 function featured_video_slug() {
-		return get_option( 'newmr_featured_video', '' );
+	return get_option( 'newmr_featured_video', '' );
 }
+
+/**
+ * Register helper shortcodes so block templates can invoke theme functions.
+ */
+add_shortcode( 'donate_box', 'donate_box' );
+add_shortcode( 'about_newmr_box', 'about_newmr_box' );
+add_shortcode( 'left_footer_link', 'left_footer_link' );
+add_shortcode( 'right_footer_link', 'right_footer_link' );
