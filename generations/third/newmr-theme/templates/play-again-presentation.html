@@ -1,10 +1,19 @@
 <!-- wp:group {"tagName":"main","className":"py-8"} -->
 <main id="content" class="py-8">
   <!-- wp:query-title {"className":"text-3xl font-bold text-center mb-8"} /-->
-  <!-- wp:post-template {"className":"space-y-12 max-w-2xl mx-auto"} -->
-  <!-- wp:post-title {"isLink":true,"className":"text-2xl font-semibold"} /-->
-  <!-- wp:post-excerpt {"className":"text-gray-700"} /-->
-  <!-- wp:post-date {"className":"text-sm text-gray-500"} /-->
+  <!-- wp:post-template {"className":"grid gap-6 max-w-4xl mx-auto"} -->
+  <!-- wp:group {"tagName":"article","className":"relative flex bg-white shadow rounded-lg overflow-hidden"} -->
+  <article class="relative flex bg-white shadow rounded-lg overflow-hidden">
+    <!-- wp:post-featured-image {"className":"h-32 w-32 object-cover border-r-2 border-blue-500"} /-->
+    <!-- wp:group {"className":"p-4 flex flex-col justify-center gap-1"} -->
+    <div class="p-4 flex flex-col justify-center gap-1">
+      <!-- wp:post-title {"isLink":true,"level":2,"className":"text-lg font-semibold"} /-->
+      <!-- wp:shortcode -->[event_dates]<!-- /wp:shortcode -->
+      <!-- wp:shortcode -->[free_badge]<!-- /wp:shortcode -->
+    </div>
+    <!-- /wp:group -->
+  </article>
+  <!-- /wp:group -->
   <!-- /wp:post-template -->
 </main>
 <!-- /wp:group -->
