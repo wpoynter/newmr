@@ -25,7 +25,7 @@ if ( $ready_count > 0 ) : ?>
 <!-- wp:group {"tagName":"aside","className":"p-4 bg-gray-50"} -->
 <aside class="p-4 bg-gray-50" id="play-again-sidebar">
 	<div id="sidebar-container">
-	<a href="<?php echo esc_url( get_site_url() . '/play-again/' . $e_post->post_name ); ?>" class="block">
+	<a href="<?php echo esc_url( home_url( '/play-again/' ) . $e_post->post_name ); ?>" class="block">
 		<h2 class="font-bold text-lg">Play Again</h2>
 				<span><?php echo intval( $pres->post_count ); ?> recording<?php echo 1 !== $pres->post_count ? 's' : ''; ?></span>
 	</a>
