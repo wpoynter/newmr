@@ -75,3 +75,38 @@ add_shortcode( 'donate_box', 'donate_box' );
 add_shortcode( 'about_newmr_box', 'about_newmr_box' );
 add_shortcode( 'left_footer_link', 'left_footer_link' );
 add_shortcode( 'right_footer_link', 'right_footer_link' );
+/**
+ * Return formatted event date range based on meta fields.
+ *
+ * @return string Event dates HTML
+ */
+function newmr_event_dates() {
+		$from = get_post_meta( get_the_ID(), 'event_date_from', true );
+		$to   = get_post_meta( get_the_ID(), 'event_date_to', true );
+	if ( strlen( $from ) < 1 ) {
+			return '';
+	}
+	if ( $from === $to ) {
+			$dates = date_i18n( 'jS F', $from );
+	} elseif ( gmdate( 'F', $from ) === gmdate( 'F', $to ) ) {
+			$dates = date_i18n( 'jS', $from ) . ' - ' . date_i18n( 'jS F', $to );
+	} else {
+			$dates = date_i18n( 'jS F', $from ) . ' - ' . date_i18n( 'jS F', $to );
+	}
+		return '<span class="event-dates">' . esc_html( $dates ) . '</span>';
+}
+add_shortcode( 'event_dates', 'newmr_event_dates' );
+
+/**
+ * Output a "Free" badge when the event_free meta equals "yes".
+ *
+ * @return string
+ */
+function newmr_free_badge() {
+		$is_free = get_post_meta( get_the_ID(), 'event_free', true );
+	if ( 'yes' === $is_free ) {
+			return '<span class="free-badge text-green-600">' . esc_html__( 'Free', 'newmr' ) . '</span>';
+	}
+		return '';
+}
+add_shortcode( 'free_badge', 'newmr_free_badge' );
