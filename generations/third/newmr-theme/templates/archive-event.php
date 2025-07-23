@@ -95,7 +95,7 @@ $past = new WP_Query(
 ?>
 <?php if ( $upcoming->have_posts() ) : ?>
 	<section class="space-y-6">
-	<h1 class="text-3xl font-bold"><?php esc_html_e( 'Upcoming Events', 'newmr' ); ?></h1>
+	<h1 class="text-3xl font-bold"><?php esc_html_e( 'Upcoming Events', 'newmr-theme' ); ?></h1>
 	<div class="space-y-8">
 		<?php
 		while ( $upcoming->have_posts() ) :
@@ -109,7 +109,7 @@ $past = new WP_Query(
 
 <?php if ( $open->have_posts() ) : ?>
 	<section class="space-y-6">
-	<h1 class="text-3xl font-bold"><?php esc_html_e( 'Open Events', 'newmr' ); ?></h1>
+	<h1 class="text-3xl font-bold"><?php esc_html_e( 'Open Events', 'newmr-theme' ); ?></h1>
 	<div class="space-y-8">
 		<?php
 		while ( $open->have_posts() ) :

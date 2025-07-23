@@ -31,14 +31,14 @@ if ( ! $has_meta ) {
 		<?php if ( $free ) : ?>
 		<dt class="col-start-1 border-t border-zinc-950/5 pt-3 text-zinc-500 first:border-none sm:border-t sm:border-zinc-950/5 sm:py-3 dark:border-white/5 dark:text-zinc-400 sm:dark:border-white/5">Free</dt>
 		<dd class="pt-1 pb-3 text-zinc-950 sm:border-t sm:border-zinc-950/5 sm:py-3 dark:text-white dark:sm:border-white/5">
-			<?php echo 'yes' === strtolower( $free ) ? esc_html__( 'Yes', 'newmr' ) : esc_html__( 'No', 'newmr' ); ?>
+						<?php echo 'yes' === strtolower( $free ) ? esc_html__( 'Yes', 'newmr-theme' ) : esc_html__( 'No', 'newmr-theme' ); ?>
 		</dd>
 		<?php endif; ?>
 		<?php if ( $pdf ) : ?>
 		<dt class="col-start-1 border-t border-zinc-950/5 pt-3 text-zinc-500 first:border-none sm:border-t sm:border-zinc-950/5 sm:py-3 dark:border-white/5 dark:text-zinc-400 sm:dark:border-white/5">PDF</dt>
 		<dd class="pt-1 pb-3 text-zinc-950 sm:border-t sm:border-zinc-950/5 sm:py-3 dark:text-white dark:sm:border-white/5">
 			<a class="text-blue-600 hover:underline" href="<?php echo esc_url( $pdf ); ?>">
-				<?php esc_html_e( 'Download', 'newmr' ); ?>
+								<?php esc_html_e( 'Download', 'newmr-theme' ); ?>
 			</a>
 		</dd>
 		<?php endif; ?>
@@ -46,7 +46,7 @@ if ( ! $has_meta ) {
 		<dt class="col-start-1 border-t border-zinc-950/5 pt-3 text-zinc-500 first:border-none sm:border-t sm:border-zinc-950/5 sm:py-3 dark:border-white/5 dark:text-zinc-400 sm:dark:border-white/5">Website</dt>
 		<dd class="pt-1 pb-3 text-zinc-950 sm:border-t sm:border-zinc-950/5 sm:py-3 dark:text-white dark:sm:border-white/5">
 			<a class="text-blue-600 hover:underline" href="<?php echo esc_url( $external ); ?>">
-				<?php esc_html_e( 'Visit', 'newmr' ); ?>
+								<?php esc_html_e( 'Visit', 'newmr-theme' ); ?>
 			</a>
 		</dd>
 		<?php endif; ?>

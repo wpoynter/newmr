@@ -7,7 +7,7 @@
     = get_post_meta( get_the_ID(), 'presentation_slides', true ); if ( $slides )
     : ?>
     <a href="<?php echo esc_url( $slides ); ?>" class="btn inline-block mt-4"
-      ><?php esc_html_e( 'Download Slides', 'newmr' ); ?></a
+      ><?php esc_html_e( 'Download Slides', 'newmr-theme' ); ?></a
     >
     <?php endif; ?>
   </section>
@@ -16,7 +16,7 @@
   ) ); if ( $people->have_posts() ) : ?>
   <section
     class="mt-6"
-    aria-label="<?php esc_attr_e( 'Speakers', 'newmr' ); ?>"
+    aria-label="<?php esc_attr_e( 'Speakers', 'newmr-theme' ); ?>"
   >
     <?php while ( $people->have_posts() ) : $people->the_post();
     get_template_part( 'parts/speaker-card' ); endwhile; wp_reset_postdata(); ?>
