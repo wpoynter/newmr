@@ -1,17 +1,81 @@
-<!-- wp:group {"tagName":"header","className":"border-b"} -->
-<header class="border-b">
+<!-- wp:group {"tagName":"header","className":"border-b sticky top-0 z-50 bg-white font-sans"} -->
+<header class="border-b sticky top-0 z-50 bg-white font-sans">
   <a href="#content" class="sr-only focus:not-sr-only">Skip to content</a>
-  <!-- wp:group {"className":"mx-auto max-w-7xl flex items-center justify-between gap-x-8 px-4 py-4 sm:px-6 lg:px-8"} -->
-  <div
-    class="mx-auto max-w-7xl flex items-center justify-between gap-x-8 px-4 py-4 sm:px-6 lg:px-8"
-  >
-    <!-- wp:site-logo /-->
-    <!-- wp:group {"className":"flex items-center gap-x-4"} -->
-    <div class="flex items-center gap-x-4">
-      <!-- wp:navigation {"overlayMenu":"modal"} /-->
-      <!-- wp:search {"label":"Search","showLabel":false,"className":"hidden sm:block"} /-->
-      <!-- wp:buttons {"className":"hidden sm:flex gap-x-2"} -->
-      <div class="wp-block-buttons hidden sm:flex gap-x-2">
+  <!-- wp:group {"className":"mx-auto max-w-7xl px-6 py-5 sm:px-8"} -->
+  <div class="mx-auto max-w-7xl px-6 py-5 sm:px-8">
+    <!-- wp:group {"className":"flex items-center justify-between"} -->
+    <div class="flex items-center justify-between">
+      <!-- wp:site-logo /-->
+      <div class="flex items-center gap-x-4">
+        <button
+          id="mobile-menu-toggle"
+          class="sm:hidden p-2 rounded-md text-zinc-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand"
+          type="button"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg
+            id="icon-menu"
+            class="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 5.25h16.5M3.75 11.25h16.5M3.75 17.25h16.5"
+            />
+          </svg>
+          <svg
+            id="icon-close"
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <!-- wp:group {"className":"hidden sm:flex items-center gap-x-4"} -->
+        <div class="hidden sm:flex items-center gap-x-4">
+          <!-- wp:navigation /-->
+          <!-- wp:search {"label":"Search","showLabel":false} /-->
+          <!-- wp:buttons {"className":"flex gap-x-2"} -->
+          <div class="wp-block-buttons flex gap-x-2">
+            <!-- wp:button {"className":"btn text-sm"} -->
+            <div class="wp-block-button btn text-sm">
+              <a class="wp-block-button__link btn text-sm" href="/donate/"
+                >Donate</a
+              >
+            </div>
+            <!-- /wp:button -->
+            <!-- wp:button {"className":"btn text-sm"} -->
+            <div class="wp-block-button btn text-sm">
+              <a class="wp-block-button__link btn text-sm" href="/sign-up/"
+                >Sign Up</a
+              >
+            </div>
+            <!-- /wp:button -->
+          </div>
+          <!-- /wp:buttons -->
+        </div>
+        <!-- /wp:group -->
+      </div>
+    </div>
+    <!-- /wp:group -->
+    <div id="mobile-menu" class="mt-4 space-y-4 sm:hidden hidden">
+      <!-- wp:navigation /-->
+      <!-- wp:search {"label":"Search","showLabel":false} /-->
+      <!-- wp:buttons {"className":"flex gap-x-2"} -->
+      <div class="wp-block-buttons flex gap-x-2">
         <!-- wp:button {"className":"btn text-sm"} -->
         <div class="wp-block-button btn text-sm">
           <a class="wp-block-button__link btn text-sm" href="/donate/"
@@ -29,8 +93,20 @@
       </div>
       <!-- /wp:buttons -->
     </div>
-    <!-- /wp:group -->
   </div>
   <!-- /wp:group -->
+  <script>
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        iconMenu.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+      });
+    }
+  </script>
 </header>
 <!-- /wp:group -->
