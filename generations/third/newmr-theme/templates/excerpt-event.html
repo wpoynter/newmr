@@ -1,6 +1,29 @@
-<!-- wp:group {"tagName":"article","className":"prose"} -->
-<article class="prose">
-  <!-- wp:post-title {"level":2,"isLink":true,"className":"mb-2"} /-->
-  <!-- wp:post-excerpt /-->
+<!-- wp:group {"tagName":"article","className":"relative flex gap-4 p-4 border rounded-lg overflow-hidden"} -->
+<article
+  class="relative flex gap-4 p-4 border rounded-lg overflow-hidden group"
+>
+  <?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
+  <div class="shrink-0">
+    <?php the_post_thumbnail('medium', array('class' => 'h-24 w-32 object-cover
+    rounded-md')); ?>
+  </div>
+  <?php endif; ?>
+  <div class="flex flex-col">
+    <h3 class="text-lg font-semibold mb-1"><?php the_title(); ?></h3>
+    <?php $datestring_from = get_post_meta( get_the_ID(), 'event_date_from',
+    true ); $datestring_to = get_post_meta( get_the_ID(), 'event_date_to', true
+    ); if ( strlen( $datestring_from ) > 1 ) : ?>
+    <span class="text-sm text-gray-500">
+      <?php if ( $datestring_from == $datestring_to ) { echo date( 'jS F',
+      $datestring_from ); } else { if ( date( 'F', $datestring_from ) == date(
+      'F', $datestring_to ) ) { echo date( 'jS', $datestring_from ) . ' - ' .
+      date( 'jS F', $datestring_to ); } else { echo date( 'jS F',
+      $datestring_from ) . ' - ' . date( 'jS F', $datestring_to ); } } ?>
+    </span>
+    <?php endif; ?>
+  </div>
+  <a href="<?php the_permalink(); ?>" class="absolute inset-0 z-10"
+    ><span class="sr-only"><?php the_title(); ?></span></a
+  >
 </article>
 <!-- /wp:group -->

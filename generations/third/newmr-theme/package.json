@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "vite build",
-    "watch": "vite",
+    "watch": "vite build --watch",
     "lint": "eslint . && prettier --check .",
     "test": "echo \"No JS tests\"",
     "e2e": "node --test ../../../e2e"

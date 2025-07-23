@@ -17,9 +17,11 @@ npm install --prefix newmr-theme
 docker compose run --rm tests composer test
 # Running the tests via Docker ensures consistent PHP and MySQL versions
 npm run --prefix newmr-theme build
+docker compose up assets # rebuild theme CSS on changes
 ```
 
-The theme assets can be rebuilt during development with `npm run --prefix newmr-theme watch`.
+The `assets` service uses Vite and Tailwind to watch the theme files and update
+`dist/style.css` automatically.
 
 ## Porting Checklist
 
