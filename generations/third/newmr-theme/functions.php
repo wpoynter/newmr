@@ -12,7 +12,7 @@ function newmr_theme_setup() {
 	add_theme_support( 'wp-block-styles' );
 	register_nav_menus(
 		array(
-			'primary' => __( 'Primary Menu', 'newmr' ),
+			'primary' => __( 'Primary Menu', 'newmr-theme' ),
 		)
 	);
 }
@@ -128,7 +128,7 @@ function newmr_events_page_shortcode() {
 
 	if ( $up_query->have_posts() ) {
 			echo '<section class="space-y-6">';
-			echo '<h2 class="text-2xl font-bold">' . esc_html__( 'Upcoming Events', 'newmr' ) . '</h2>';
+					echo '<h2 class="text-2xl font-bold">' . esc_html__( 'Upcoming Events', 'newmr-theme' ) . '</h2>';
 		while ( $up_query->have_posts() ) {
 				$up_query->the_post();
 				get_template_part( 'excerpt', get_post_type() );
@@ -164,7 +164,7 @@ function newmr_events_page_shortcode() {
 
 	if ( $open_query->have_posts() ) {
 			echo '<section class="space-y-6">';
-			echo '<h2 class="text-2xl font-bold">' . esc_html__( 'Open Events', 'newmr' ) . '</h2>';
+					echo '<h2 class="text-2xl font-bold">' . esc_html__( 'Open Events', 'newmr-theme' ) . '</h2>';
 		while ( $open_query->have_posts() ) {
 				$open_query->the_post();
 				get_template_part( 'excerpt', get_post_type() );
@@ -311,7 +311,7 @@ add_shortcode( 'event_dates', 'newmr_event_dates' );
 function newmr_free_badge() {
 		$is_free = get_post_meta( get_the_ID(), 'event_free', true );
 	if ( 'yes' === $is_free ) {
-			return '<span class="free-badge text-green-600">' . esc_html__( 'Free', 'newmr' ) . '</span>';
+					return '<span class="free-badge text-green-600">' . esc_html__( 'Free', 'newmr-theme' ) . '</span>';
 	}
 		return '';
 }

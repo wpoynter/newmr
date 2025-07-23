@@ -41,9 +41,9 @@
 	$slides = get_post_meta( get_the_ID(), 'presentation_slides', true ); if ( $slides ) :
 		?>
 	<div class="mt-4">
-	<a class="btn text-sm" href="<?php echo esc_url( $slides ); ?>">
-		<?php esc_html_e( 'Download Slides', 'newmr' ); ?>
-	</a>
+		<a class="btn text-sm" href="<?php echo esc_url( $slides ); ?>">
+				<?php esc_html_e( 'Download Slides', 'newmr-theme' ); ?>
+		</a>
 	</div>
 	<?php endif; ?>
 	<!-- /wp:html -->

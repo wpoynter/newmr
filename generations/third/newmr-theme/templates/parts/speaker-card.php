@@ -12,9 +12,9 @@
 				the_post_thumbnail(
 					array( 96, 96 ),
 					array(
-						'class' => 'rounded-full w-24 h-24 object-cover',
+						'class'                       => 'rounded-full w-24 h-24 object-cover',
 						/* translators: %s: speaker name */
-						'alt'   => sprintf( esc_attr__( 'Photo of %s', 'newmr' ), get_the_title() ),
+												'alt' => sprintf( esc_attr__( 'Photo of %s', 'newmr-theme' ), get_the_title() ),
 					)
 				);
 				?>

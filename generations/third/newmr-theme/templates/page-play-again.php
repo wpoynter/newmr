@@ -36,10 +36,10 @@ if ( isset( $wp_query->query_vars['one'] ) && '' !== $wp_query->query_vars['one'
 				<table class="min-w-full divide-y divide-gray-200">
 						<thead>
 								<tr class="bg-gray-50">
-										<th class="speaker-col p-2 text-left"><?php esc_html_e( 'Speaker', 'newmr' ); ?></th>
-										<th class="title-col p-2 text-left"><?php esc_html_e( 'Title', 'newmr' ); ?></th>
-										<th class="watch-col p-2 text-center"><?php esc_html_e( 'Video', 'newmr' ); ?></th>
-										<th class="download-col p-2 text-center"><?php esc_html_e( 'Slides', 'newmr' ); ?></th>
+																				<th class="speaker-col p-2 text-left"><?php esc_html_e( 'Speaker', 'newmr-theme' ); ?></th>
+																				<th class="title-col p-2 text-left"><?php esc_html_e( 'Title', 'newmr-theme' ); ?></th>
+																				<th class="watch-col p-2 text-center"><?php esc_html_e( 'Video', 'newmr-theme' ); ?></th>
+																				<th class="download-col p-2 text-center"><?php esc_html_e( 'Slides', 'newmr-theme' ); ?></th>
 								</tr>
 						</thead>
 						<tbody class="bg-white divide-y divide-gray-200">
@@ -64,10 +64,10 @@ if ( isset( $wp_query->query_vars['one'] ) && '' !== $wp_query->query_vars['one'
 								<tr>
 										<td class="p-2"><?php echo wp_kses_post( implode( ', ', $persons ) ); ?></td>
 										<td class="p-2"><?php the_title(); ?></td>
-										<td class="p-2 text-center"><a href="<?php the_permalink(); ?>" class="text-blue-600 hover:underline"><?php esc_html_e( 'Watch', 'newmr' ); ?></a></td>
+																				<td class="p-2 text-center"><a href="<?php the_permalink(); ?>" class="text-blue-600 hover:underline"><?php esc_html_e( 'Watch', 'newmr-theme' ); ?></a></td>
 										<td class="p-2 text-center">
 												<?php if ( $slides ) : ?>
-														<a href="<?php echo esc_url( $slides ); ?>" class="text-blue-600 hover:underline"><?php esc_html_e( 'Download', 'newmr' ); ?></a>
+																				<a href="<?php echo esc_url( $slides ); ?>" class="text-blue-600 hover:underline"><?php esc_html_e( 'Download', 'newmr-theme' ); ?></a>
 												<?php endif; ?>
 										</td>
 								</tr>

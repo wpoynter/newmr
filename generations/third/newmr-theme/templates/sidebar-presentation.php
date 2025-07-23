@@ -25,6 +25,6 @@ endwhile;
 </aside>
 <!-- /wp:group -->
 <?php endif; ?>
-<aside class="hidden lg:block" aria-label="<?php esc_attr_e( 'Advertisement', 'newmr' ); ?>">
+<aside class="hidden lg:block" aria-label="<?php esc_attr_e( 'Advertisement', 'newmr-theme' ); ?>">
 <?php get_sidebar(); ?>
 </aside>
